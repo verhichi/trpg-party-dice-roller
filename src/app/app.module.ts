@@ -11,6 +11,9 @@ import { JoinRoomComponent } from './body/lobby/join-room/join-room.component';
 import { HostRoomComponent } from './body/lobby/host-room/host-room.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { LogComponent } from './body/room/log/log.component';
+import { OtherUserComponent } from './body/room/other-user/other-user.component';
+import { SelfUserComponent } from './body/room/self-user/self-user.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { AppRoutingModule } from './app-routing.module';
     LobbyComponent,
     RoomComponent,
     JoinRoomComponent,
-    HostRoomComponent
+    HostRoomComponent,
+    LogComponent,
+    OtherUserComponent,
+    SelfUserComponent
   ],
   imports: [
     BrowserModule,

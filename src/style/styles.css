@@ -33,24 +33,23 @@ header{
 }
 
 
+main{
+  display: flex;
+  height: calc(100% - 40px);
+  margin: 0 auto;
+  width: 1280px;
+}
+
 .main-lobby{
   align-items: center;
   background: url("./images/background.jpg") center bottom no-repeat;
-  display: flex;
-  height: calc(100% - 40px);
   justify-content: center;
-  margin: 0 auto;
-  padding: 50px 0;
-  width: 1280px;
 }
 
 .main-room{
   background: #191919;
-  display: flex;
   height: calc(100% - 40px);
-  margin: 0 auto;
-  padding: 10px 0 40px 0;
-  width: 1280px;
+  padding: 10px 10px 40px 10px;
 }
 
 @media screen and (max-width: 1280px) {
@@ -85,8 +84,10 @@ header{
 
 .input-field{
   border: none;
+  font-size: 24px;
   height: 48px;
   padding: 0 5px;
+  width: 100%;
 }
 
 .or-container{
@@ -217,10 +218,10 @@ header{
 
 .log-container{
   border: 2px solid #FBE553;
-  flex-basis: 315px;
-  flex-shrink: 0;
+  height: 100%;
   margin-left: 10px;
   overflow: hidden;
+  width: 315px;
 }
 
 @media screen and (max-width: 768px) {

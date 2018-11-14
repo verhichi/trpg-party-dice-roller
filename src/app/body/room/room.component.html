@@ -1,69 +1,9 @@
 <main class="main-room">
   <div class="user-list-container">
-
-    <div class="self-container">
-      <div class="user-container">
-        <div class="username">DAICHI (YOU) - Room ID: 1234</div>
-        <div class="dice-roll-container">
-
-          <div class="dice-roll-form-container">
-            <div class="dice-roll-title">Dice Setting</div>
-            <div class="dice-roll-form">
-              <div class="dice-type">
-                Dice:
-                <input class="input-number" type="text" name="dice-number" value="2">
-                d
-                <input class="input-number" type="text" name="dice-type" value="6">
-              </div>
-              <div class="modifier">
-                Bonus:
-                <select name="symbol">
-                  <option value="+" selected>+</option>
-                  <option value="-">-</option>
-                </select>
-                <input class="input-number" type="text" name="modifier" value="0">
-              </div>
-              <button class="roll-button">ROLL</button>
-            </div>
-          </div>
-
-          <div class="dice-roll-result-container">
-            <div class="result-title">Result</div>
-            <div class="dice-roll-result-label">Dice Roll Result(Bonus): </div>
-            <div class="dice-roll-result">-</div>
-            <div class="dice-roll-total-label">Total:</div>
-            <div class="dice-roll-total">-</div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="other-container">
-      <div class="user-container">
-        <div class="username">Morikawa</div>
-        <div class="dice-roll-container">
-          <div class="dice-roll-result-container">
-            <div class="result-title">Result</div>
-            <div class="dice-roll-result-label">Dice Roll Result(Bonus): </div>
-            <div class="dice-roll-result">-</div>
-            <div class="dice-roll-total-label">Total:</div>
-            <div class="dice-roll-total">-</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <app-self-user></app-self-user>
+    <app-other-user></app-other-user>
   </div>
 
-  <div class="log-container">
-    <div class="log-title-container">Dice Roll Log</div>
-    <div class="log-content-container">
-      <div class="log-content">New entries are inserted at the top!</div>
-    </div>
-    <div class="log-button-container">
-      <button class="log-button">Add Breakpoint</button>
-    </div>
-  </div>
+  <app-log></app-log>
 
 </main>
