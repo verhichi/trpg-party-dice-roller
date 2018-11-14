@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from '../../../service/web-socket.service';
+
 
 @Component({
   selector: 'app-host-room',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HostRoomComponent implements OnInit {
 
-  constructor() { }
+  msgInput: string = 'lorem ipsum';
+
+  constructor(
+    private webSocket: WebSocketService
+  ) { }
 
   ngOnInit() {
+    this.webSocket.onNewMessage().subscribe((msg) => {
+      console.log(msg);
+    });
+  }
+
+  sendButtonClick(){
+    this.webSocket.sendMessage(this.msgInput);
   }
 
 }
