@@ -33,7 +33,7 @@ header{
 }
 
 
-main{
+.main-lobby{
   align-items: center;
   background: url("./images/background.jpg") center bottom no-repeat;
   display: flex;
@@ -41,6 +41,15 @@ main{
   justify-content: center;
   margin: 0 auto;
   padding: 50px 0;
+  width: 1280px;
+}
+
+.main-room{
+  background: #191919;
+  display: flex;
+  height: calc(100% - 40px);
+  margin: 0 auto;
+  padding: 10px;
   width: 1280px;
 }
 
