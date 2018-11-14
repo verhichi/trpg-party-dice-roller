@@ -9,7 +9,6 @@ import { LobbyComponent } from './body/lobby/lobby.component';
 import { RoomComponent } from './body/room/room.component';
 import { JoinRoomComponent } from './body/lobby/join-room/join-room.component';
 import { HostRoomComponent } from './body/lobby/host-room/host-room.component';
-import { OtherUserComponent } from './body/room/other-user/other-user.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,8 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     LobbyComponent,
     RoomComponent,
     JoinRoomComponent,
-    HostRoomComponent,
-    OtherUserComponent
+    HostRoomComponent
   ],
   imports: [
     BrowserModule,
