@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { OtherUserComponent } from './body/room/other-user/other-user.component'
 import { SelfUserComponent } from './body/room/self-user/self-user.component';
 
 import { WebSocketService } from './service/web-socket.service';
+import { RoomService } from './service/room.service';
 
 
 @NgModule({
@@ -33,10 +35,12 @@ import { WebSocketService } from './service/web-socket.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
-    {provide: WebSocketService, useClass: WebSocketService}
+    {provide: WebSocketService, useClass: WebSocketService},
+    {provide: RoomService, useClass: RoomService}
   ],
   bootstrap: [AppComponent]
 })
