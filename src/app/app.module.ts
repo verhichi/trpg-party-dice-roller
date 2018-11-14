@@ -13,6 +13,8 @@ import { SelfUserComponent } from './body/room/self-user/self-user.component';
 import { OtherUserComponent } from './body/room/other-user/other-user.component';
 import { LogComponent } from './body/room/log/log.component';
 
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { LogComponent } from './body/room/log/log.component';
     LogComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
