@@ -15,6 +15,8 @@ import { LogComponent } from './body/room/log/log.component';
 import { OtherUserComponent } from './body/room/other-user/other-user.component';
 import { SelfUserComponent } from './body/room/self-user/self-user.component';
 
+import { WebSocketService } from './service/web-socket.service';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SelfUserComponent } from './body/room/self-user/self-user.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: WebSocketService, useClass: WebSocketService}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
