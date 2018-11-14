@@ -1,0 +1,266 @@
+@font-face {
+  font-family: "ColabThin";
+  src: url("./fonts/ColabThi-webfont.woff");
+}
+
+/* GENERAL PROPERTIES */
+  /* Box sizing */
+    *,
+    *::after,
+    *::before{
+      box-sizing: inherit;
+      font-family: "ColabThin";
+    }
+
+    html{
+      box-sizing: border-box;
+    }
+
+  /* Height */
+    html,
+    body{
+      background: #191919;
+      height: 100%;
+    }
+
+header{
+  background: #000;
+  color: #FFF;
+  font-size: 32px;
+  height: 40px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+
+main{
+  align-items: center;
+  background: url("./images/background.jpg") center bottom no-repeat;
+  display: flex;
+  height: calc(100% - 40px);
+  justify-content: center;
+  margin: 0 auto;
+  padding: 50px 0;
+  width: 1280px;
+}
+
+@media screen and (max-width: 1280px) {
+  main{
+    margin: 0;
+    width: 100%;
+  }
+}
+
+
+.input-container{
+  background: rgba(255,255,255,0.1);
+  color: #FFF;
+  margin: 10px 0;
+  padding: 25px;
+}
+
+.input-container > button{
+  background: #047DE5;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 24px;
+  margin-top: 10px;
+  padding: 15px 10px;
+  width: 100%;
+}
+
+.input-label{
+  font-size: 24px;
+}
+
+.input-field{
+  border: none;
+  height: 48px;
+  padding: 0 5px;
+}
+
+.or-container{
+  color: #FFF;
+  font-size: 24px;
+  text-align: center;
+}
+
+
+.user-list-container{
+  height: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.user-container{
+  border: 2px solid;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.other-container{
+  height: calc(100% - 200px);
+  overflow-y: scroll;
+  width: calc(100% + 17px);
+}
+
+.username{
+  font-size: 18px;
+  font-weight: bold;
+  height: 24px;
+  padding: 3px;
+}
+
+.self-container .user-container{
+  border-color: #77D83D;
+}
+
+.self-container .username{
+  background: #77D83D;
+}
+
+.other-container .user-container{
+  border-color: #fff;
+  display: inline-block;
+  width: 33%;
+}
+
+@media screen and (max-width: 1280px) {
+  .other-container .user-container{
+    border-color: #fff;
+    display: inline-block;
+    width: 49%;
+  }
+}
+
+.other-container .username{
+  background: #fff;
+}
+
+.dice-roll-container{
+  background: #191919;
+  display: flex;
+  height: calc(100% - 24px);
+  padding: 5px;
+}
+
+.dice-roll-title{
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  height: 20px;
+  text-align: center;
+}
+
+.dice-roll-form-container{
+  padding: 0 5px;
+}
+
+.dice-roll-form{
+  align-items: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 20px);
+  justify-content: space-around;
+}
+
+.dice-roll-form input,
+.dice-roll-form select{
+  border: none;
+  height: 30px;
+  padding: 3px;
+  width: 40px;
+}
+
+.roll-button{
+  background: #047DE5;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+}
+
+.dice-roll-result-container{
+  color: #fff;
+  flex-grow: 1;
+  padding: 0 5px;
+}
+
+.result-title{
+  border-bottom: 1px solid #fff;
+  height: 20px;
+  text-align: center;
+}
+
+.dice-roll-result{
+  font-size: 24px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.dice-roll-total{
+  font-size: 48px;
+  padding-left: 10px;
+}
+
+
+
+
+
+.log-container{
+  border: 2px solid #FBE553;
+  flex-basis: 315px;
+  flex-shrink: 0;
+  margin-left: 10px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .log-container{
+    display: none;
+  }
+
+  .log-container.is-active{
+    display: block;
+    position: fixed;
+    margin-left: 0;
+    width: calc(100% - 20px);
+  }
+}
+
+.log-title-container{
+  background: #FBE553;
+  font-size: 18px;
+  font-weight: bold;
+  height: 24px;
+  padding: 3px;
+}
+
+.log-content-container{
+  background: #191919;
+  height: calc(100% - 57px);
+  overflow-y: scroll;
+  padding: 5px;
+  width: calc(100% + 20px);
+}
+
+.log-content{
+  color: #fff;
+  font-size: 10px;
+}
+
+.log-button-container{
+  background: #FBE553;
+  padding: 3px 0;
+}
+
+.log-button{
+  border: none;
+  background: #047DE5;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
+}
