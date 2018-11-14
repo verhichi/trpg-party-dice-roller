@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { RoomService } from '../../../service/room.service';
 
@@ -12,7 +12,6 @@ export class HostRoomComponent implements OnInit {
 
   constructor(
     private router:      Router,
-    private route:       ActivatedRoute,
     private roomService: RoomService
   ) { }
 
@@ -20,8 +19,8 @@ export class HostRoomComponent implements OnInit {
   }
 
   onClickNewRoom(){
-    this.route.params.subscribe((params) => {
-      this.router.navigate(['/' + params.result]);
+    this.roomService.getNewRoom().subscribe((res) => {
+      this.router.navigate(['/' + res['result']]);
     });
   }
 
