@@ -33,10 +33,11 @@ export class RoomComponent implements OnInit {
           }
         }
       });
-
-
-
     });
+  }
+
+  sendRoll(dice_setting){
+    this.webSocket.rollDice(this.room_id, this.self_user_id, dice_setting.dice_count, dice_setting.dice_type, dice_setting.bonus_symbol, dice_setting.bonus_val);
   }
 
 }

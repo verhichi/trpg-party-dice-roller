@@ -1,6 +1,6 @@
 <main class="main-room">
   <div class="user-list-container">
-    <app-self-user [room_id]="room_id"></app-self-user>
+    <app-self-user [room_id]="room_id" (onRollClick)="sendRoll($event)"></app-self-user>
     <app-other-user></app-other-user>
   </div>
 

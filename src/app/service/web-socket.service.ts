@@ -22,7 +22,7 @@ export class WebSocketService {
     });
   }
 
-  rollDice(room_id: string, user_id: string, dice_count: string, dice_type: string, bonus_symbol: string, bonus_val: string){
+  rollDice(room_id: string, user_id: string, dice_count: number, dice_type: number, bonus_symbol: string, bonus_val: number){
     let result = [];
 
     for(let idx = 0; idx < dice_count; idx++){
@@ -42,6 +42,8 @@ export class WebSocketService {
       result_string: result_string,
       total_val: total_val
     };
+
+    console.log(roll_result);
 
     this.socket.emit('roll', roll_result);
   }

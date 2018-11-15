@@ -8,19 +8,19 @@
         <div class="dice-roll-form">
           <div class="dice-type">
             Dice:
-            <input class="input-number" type="text" name="dice-number" value="2">
+            <input #dice_count class="input-number" type="text" name="dice-number" value="2">
             d
-            <input class="input-number" type="text" name="dice-type" value="6">
+            <input #dice_type class="input-number" type="text" name="dice-type" value="6">
           </div>
           <div class="modifier">
             Bonus:
-            <select name="symbol">
+            <select #bonus_symbol name="symbol">
               <option value="+" selected>+</option>
               <option value="-">-</option>
             </select>
-            <input class="input-number" type="text" name="modifier" value="0">
+            <input #bonus_val class="input-number" type="text" name="modifier" value="0">
           </div>
-          <button class="roll-button">ROLL</button>
+          <button class="roll-button" (click)="onClick(dice_count.value, dice_type.value, bonus_symbol.value, bonus_val.value)">ROLL</button>
         </div>
       </div>
 
