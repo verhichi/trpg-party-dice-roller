@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { WebSocketService } from '../../service/web-socket.service';
 
 @Component({
   selector: 'app-room',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private webSocket: WebSocketService,
+    private route:     ActivatedRoute
+  ) { }
 
   ngOnInit() {
+
   }
 
 }
