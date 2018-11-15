@@ -9,13 +9,18 @@ import { WebSocketService } from '../../service/web-socket.service';
 })
 export class RoomComponent implements OnInit {
 
+  private room_id: string;
+
   constructor(
     private webSocket: WebSocketService,
     private route:     ActivatedRoute
   ) { }
 
   ngOnInit() {
-
+    this.route.params.subscribe((params) => {
+      this.room_id = params['room_id'];
+      console.log('this.room_id:', this.room_id);
+    });
   }
 
 }
