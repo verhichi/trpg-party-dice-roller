@@ -13,6 +13,7 @@ export class RoomComponent implements OnInit {
   private self_user_id: string;
   private users;
   private user_rolls: Object= {};
+  private log_array: string[] = ['New entries are inserted at the top'];
 
   constructor(
     private webSocket: WebSocketService,
@@ -38,7 +39,10 @@ export class RoomComponent implements OnInit {
       });
 
       this.webSocket.onNewRoll().subscribe((roll) => {
-        this.user_rolls[roll.user_id] = roll['result'];
+        this.user_rolls[roll.user_id] = roll.result;
+
+        const master_start_timestamp = new Date().toLocaleString();
+        this.log_array.unshift(`[${master_start_timestamp}][${this.users[roll.user_id]}] Result: ${roll.result.result_string}, Total: ${roll.result.total_val}`);
       });
 
     });
