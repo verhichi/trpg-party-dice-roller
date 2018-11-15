@@ -41,7 +41,7 @@ app.get('/new_room_id', (req, res) => {
 // GET check if room id to join exists
 app.get('/check_room_id', (req, res) => {
   let result = true;
-  if(!!io.sockets.adapter.rooms[req.query.room_id]){
+  if(!io.sockets.adapter.rooms[req.query.room_id]){
     result = false;
   }
   res.json({result: result});
@@ -59,6 +59,9 @@ io.on('connection', (socket) => {
 
   // Logic for when a new user joins the room
   socket.on('join', (room_id) => {
+    for (room in socket.rooms){
+      socket.leave(room);
+    }
     socket.join(room_id);
   });
 
