@@ -10,6 +10,9 @@ import { WebSocketService } from '../../service/web-socket.service';
 export class RoomComponent implements OnInit {
 
   private room_id: string;
+  private self_user_id: string;
+  private users: Object;
+  private user_rolls: Object;
 
   constructor(
     private webSocket: WebSocketService,
@@ -19,7 +22,16 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.room_id = params['room_id'];
-      this.webSocket.joinRoom(this.room_id);
+
+      this.webSocket.joinRoom(this.room_id).subscribe((room_info) => {
+        this.users = room_info;
+        for (user_id in this.users){
+          if(!this.user_rolls[user_id]){
+            this.user_rolls.[user_id] = {result_str: '-', total_val: '-'};
+          }
+        }
+      });
+
     });
   }
 

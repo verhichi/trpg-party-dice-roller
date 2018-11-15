@@ -57,15 +57,31 @@ var user_count = 0;
 
 // Place holder socket.io logic
 io.on('connection', (socket) => {
-  socket.client.display_name = 'User' + ++user_count;
-  console.log('A user has connected to a socket:', socket.client.id, '/ user nickname:', socket.client.display_name);
+  socket.display_name = 'User' + ++user_count;
+  console.log('A user has connected to a socket:', socket.client.id, '/ user display_name:', socket.display_name);
 
-  socket.on('msg', (msg) => {
-    console.log(socket.client.id, ':', msg);
-    io.emit('msg', msg.msg);
-  });
-
+  // Logic for when a new user joins the room
   socket.on('join', (room_id) => {
     socket.join(room_id);
+
+    let room_info = {};
+
+    for (socket_id in io.sockets.adapter.rooms[room_id].sockets){
+      room_info[socket_id] = io.sockets.sockets[socket_id].display_name;
+    }
+
+    io.to(room_id).emit('room_info', room_info);
   });
+
+  // Logic for when a user rolls a dice
+  socket.on('roll', (user_roll_info) => {
+    const roll_info = {
+      user_id: user_roll_info.user_id,
+      result_string: user_roll_info.result_string,
+      total_val: user_roll_info.total_val
+    };
+
+    io.to(user_roll_info.room_id).emit('roll', roll_info);
+  })
+
 });
