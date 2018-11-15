@@ -48,4 +48,12 @@ export class WebSocketService {
     this.socket.emit('roll', roll_result);
   }
 
+  onNewRoll(){
+    return Observable.create(observer => {
+      this.socket.on('roll', (roll) => {
+        observer.next(roll);
+      });
+    });
+  }
+
 }

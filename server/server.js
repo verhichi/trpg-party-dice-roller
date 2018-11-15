@@ -80,8 +80,10 @@ io.on('connection', (socket) => {
   socket.on('roll', (roll_result) => {
     const roll_info = {
       user_id: roll_result.user_id,
-      result_string: roll_result.result_string,
-      total_val: roll_result.total_val
+      result: {
+        result_string: roll_result.result_string,
+        total_val: roll_result.total_val
+      }
     };
 
     io.to(roll_result.room_id).emit('roll', roll_info);

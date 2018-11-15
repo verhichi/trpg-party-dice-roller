@@ -33,6 +33,12 @@ export class RoomComponent implements OnInit {
           }
         }
       });
+
+      this.webSocket.onNewRoll().subscribe((roll) => {
+        this.user_rolls[roll.user_id] = roll['result'];
+        console.log(this.user_rolls);
+      });
+
     });
   }
 
