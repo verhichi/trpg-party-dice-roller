@@ -1,15 +1,15 @@
 <div class="other-container">
 
-  <ng-container *ngFor="let user_id of objectKeyFunc(users)">
-    <div *ngIf="user_id != self_user_id" class="user-container">
-      <div class="username">{{users[user_id]}}</div>
+  <ng-container *ngFor="let user of users">
+    <div *ngIf="user.user_id != self_user_id" class="user-container">
+      <div class="username">{{user.display_name}}</div>
       <div class="dice-roll-container">
         <div class="dice-roll-result-container">
           <div class="result-title">Result</div>
           <div class="dice-roll-result-label">Dice Roll Result(Bonus): </div>
-          <div class="dice-roll-result">{{user_rolls[user_id]['result_string']}}</div>
+          <div class="dice-roll-result">{{user.result_string}}</div>
           <div class="dice-roll-total-label">Total:</div>
-          <div class="dice-roll-total">{{user_rolls[user_id]['total_val']}}</div>
+          <div class="dice-roll-total">{{user.total_val}}</div>
         </div>
       </div>
     </div>

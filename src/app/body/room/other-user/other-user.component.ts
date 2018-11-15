@@ -8,10 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OtherUserComponent implements OnInit {
 
   @Input() self_user_id: string;
-  @Input() users: Object;
-  @Input() user_rolls: Object;
-
-  private objectKeyFunc = Object.keys;
+  @Input() users;
 
   constructor() { }
 

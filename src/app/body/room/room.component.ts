@@ -11,8 +11,7 @@ export class RoomComponent implements OnInit {
 
   private room_id: string;
   private self_user_id: string;
-  private users;
-  private user_rolls: Object= {};
+  private users = [];
   private log_array: string[] = ['New entries are inserted at the top'];
 
   constructor(
@@ -23,33 +22,43 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.room_id = params['room_id'];
+      this.self_user_id = Math.random().toString().slice(2,11);
 
-      this.webSocket.joinRoom(this.room_id).subscribe((room_info) => {
-        if (!this.self_user_id){
-          this.self_user_id = room_info['self'];
-        }
 
-        this.users = room_info['users'];
+      const init_display_name = 'User' + Math.random().toString().slice(2,5);
+      this.users.push({user_id: this.self_user_id, display_name: init_display_name, result_string: '-', total_val: '-'});
 
-        for (let user_id in this.users){
-          if(!this.user_rolls[user_id]){
-            this.user_rolls[user_id] = {result_str: '-', total_val: '-'};
-          }
+
+      this.webSocket.joinRoom(this.room_id);
+
+
+      this.webSocket.requestAttendance(this.room_id);
+
+
+      this.webSocket.onRequestAttendance(this.room_id, this.users.find((user) => user.user_id === this.self_user_id));
+
+
+      this.webSocket.onAttendance().subscribe((user_info) => {
+        if(!this.users.some((user) => user.user_id === user_info.user_id)){
+          this.users.push(user_info);
         }
       });
 
       this.webSocket.onNewRoll().subscribe((roll) => {
-        this.user_rolls[roll.user_id] = roll.result;
+        this.users.find((user) => user.user_id === roll.user_id).result_string = roll.result_string;
+        this.users.find((user) => user.user_id === roll.user_id).total_val = roll.total_val;
 
         const master_start_timestamp = new Date().toLocaleString();
-        this.log_array.unshift(`[${master_start_timestamp}][${this.users[roll.user_id]}] Result: ${roll.result.result_string}, Total: ${roll.result.total_val}`);
+        this.log_array.unshift(`[${master_start_timestamp}][${this.users.find((user) => user.user_id === roll.user_id).display_name}] Result: ${roll.result_string}, Total: ${roll.total_val}`);
       });
 
     });
   }
 
-  sendRoll(dice_setting){
-    this.webSocket.rollDice(this.room_id, this.self_user_id, dice_setting.dice_count, dice_setting.dice_type, dice_setting.bonus_symbol, dice_setting.bonus_val);
+  sendRollResult(roll_result){
+    this.webSocket.sendRollResult(roll_result);
   }
+
+
 
 }

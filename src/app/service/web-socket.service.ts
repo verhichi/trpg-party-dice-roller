@@ -14,35 +14,27 @@ export class WebSocketService {
 
   joinRoom(room_id: string){
     this.socket.emit('join', room_id);
+  }
 
+  requestAttendance(room_id){
+    this.socket.emit('request_attendance', room_id);
+  }
+
+  onRequestAttendance(room_id, user_info){
+    this.socket.on('request_attendance', () => {
+      this.socket.emit('attendance', room_id, user_info);
+    });
+  }
+
+  onAttendance(){
     return Observable.create(observer => {
-      this.socket.on('room_info', (room_info) => {
-        observer.next(room_info);
+      this.socket.on('attendance', (user_info) => {
+        observer.next(user_info);
       });
     });
   }
 
-  rollDice(room_id: string, user_id: string, dice_count: number, dice_type: number, bonus_symbol: string, bonus_val: number){
-    let result = [];
-
-    for(let idx = 0; idx < dice_count; idx++){
-      const roll = Math.floor(Math.random() * dice_type) + 1
-      result.push(roll);
-    }
-
-    const result_string = result.join(', ') + '(' + bonus_symbol + bonus_val + ')';
-
-    const total_val = result.reduce(function(prev, next){
-      return prev + next;
-    }, Number(bonus_symbol + bonus_val));
-
-    const roll_result = {
-      room_id: room_id,
-      user_id: user_id,
-      result_string: result_string,
-      total_val: total_val
-    };
-
+  sendRollResult(roll_result){
     this.socket.emit('roll', roll_result);
   }
 

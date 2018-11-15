@@ -53,37 +53,34 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-var user_count = 0;
 
 // Place holder socket.io logic
 io.on('connection', (socket) => {
-  socket.display_name = 'User' + ++user_count;
-  console.log('A user has connected to a socket:', socket.client.id, '/ user display_name:', socket.display_name);
 
   // Logic for when a new user joins the room
   socket.on('join', (room_id) => {
     socket.join(room_id);
-
-    let room_info = {
-      self: socket.client.id,
-      users: {}
-    };
-
-    for (socket_id in io.sockets.adapter.rooms[room_id].sockets){
-      room_info.users[socket_id] = io.sockets.sockets[socket_id].display_name;
-    }
-
-    io.to(room_id).emit('room_info', room_info);
   });
+
+
+  // Makes user send there own user_info
+  socket.on('request_attendance', (room_id) => {
+    io.to(room_id).emit('request_attendance');
+  });
+
+
+  // Send user_info
+  socket.on('attendance', (room_id, user_info) => {
+    io.to(room_id).emit('attendance', user_info);
+  });
+
 
   // Logic for when a user rolls a dice
   socket.on('roll', (roll_result) => {
     const roll_info = {
       user_id: roll_result.user_id,
-      result: {
-        result_string: roll_result.result_string,
-        total_val: roll_result.total_val
-      }
+      result_string: roll_result.result_string,
+      total_val: roll_result.total_val
     };
 
     io.to(roll_result.room_id).emit('roll', roll_info);

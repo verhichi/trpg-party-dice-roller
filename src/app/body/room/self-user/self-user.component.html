@@ -1,6 +1,6 @@
 <div class="self-container">
   <div class="user-container">
-    <div class="username">{{users[self_user_id]}} (YOU) - Room ID: {{room_id}}</div>
+    <div class="username">{{self_user.display_name}} (YOU) - Room ID: {{room_id}}</div>
     <div class="dice-roll-container">
 
       <div class="dice-roll-form-container">
@@ -27,9 +27,9 @@
       <div class="dice-roll-result-container">
         <div class="result-title">Result</div>
         <div class="dice-roll-result-label">Dice Roll Result(Bonus): </div>
-        <div class="dice-roll-result">{{user_rolls[self_user_id]['result_string']}}</div>
+        <div class="dice-roll-result">{{self_user.result_string}}</div>
         <div class="dice-roll-total-label">Total:</div>
-        <div class="dice-roll-total">{{user_rolls[self_user_id]['total_val']}}</div>
+        <div class="dice-roll-total">{{self_user.total_val}}</div>
       </div>
 
     </div>
