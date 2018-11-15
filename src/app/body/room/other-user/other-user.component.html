@@ -1,5 +1,21 @@
 <div class="other-container">
-  <div class="user-container">
+
+  <ng-container *ngFor="let user_id of objectKeyFunc(users)">
+    <div *ngIf="user_id != self_user_id" class="user-container">
+      <div class="username">{{users[user_id]}}</div>
+      <div class="dice-roll-container">
+        <div class="dice-roll-result-container">
+          <div class="result-title">Result</div>
+          <div class="dice-roll-result-label">Dice Roll Result(Bonus): </div>
+          <div class="dice-roll-result">{{user_rolls[user_id]['result_string']}}</div>
+          <div class="dice-roll-total-label">Total:</div>
+          <div class="dice-roll-total">{{user_rolls[user_id]['total_val']}}</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- <div class="user-container">
     <div class="username">Morikawa</div>
     <div class="dice-roll-container">
       <div class="dice-roll-result-container">
@@ -10,5 +26,6 @@
         <div class="dice-roll-total">-</div>
       </div>
     </div>
-  </div>
+  </div> -->
+
 </div>

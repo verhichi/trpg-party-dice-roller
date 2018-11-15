@@ -11,8 +11,8 @@ export class RoomComponent implements OnInit {
 
   private room_id: string;
   private self_user_id: string;
-  private users: Object;
-  private user_rolls: Object = {};
+  private users;
+  private user_rolls: Object= {};
 
   constructor(
     private webSocket: WebSocketService,
@@ -24,7 +24,10 @@ export class RoomComponent implements OnInit {
       this.room_id = params['room_id'];
 
       this.webSocket.joinRoom(this.room_id).subscribe((room_info) => {
-        this.self_user_id = room_info['self'];
+        if (!this.self_user_id){
+          this.self_user_id = room_info['self'];
+        }
+
         this.users = room_info['users'];
 
         for (let user_id in this.users){
@@ -36,7 +39,6 @@ export class RoomComponent implements OnInit {
 
       this.webSocket.onNewRoll().subscribe((roll) => {
         this.user_rolls[roll.user_id] = roll['result'];
-        console.log(this.user_rolls);
       });
 
     });

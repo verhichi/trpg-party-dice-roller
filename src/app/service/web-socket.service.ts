@@ -6,7 +6,7 @@ import * as io from 'socket.io-client';
 export class WebSocketService {
 
   socket: SocketIOClient.Socket;
-  url: string = 'http://localhost:3000';
+  url: string = 'http://192.168.1.200:3000';
 
   constructor() {
     this.socket = io(this.url);
@@ -42,8 +42,6 @@ export class WebSocketService {
       result_string: result_string,
       total_val: total_val
     };
-
-    console.log(roll_result);
 
     this.socket.emit('roll', roll_result);
   }

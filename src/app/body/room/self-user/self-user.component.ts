@@ -8,6 +8,9 @@ import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 export class SelfUserComponent implements OnInit {
 
   @Input() room_id: string;
+  @Input() self_user_id: string;
+  @Input() users: Object;
+  @Input() user_rolls: Object;
   @Output() onRollClick = new EventEmitter();
 
   constructor() { }
