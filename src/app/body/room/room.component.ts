@@ -10,7 +10,7 @@ import { WebSocketService } from '../../service/web-socket.service';
 export class RoomComponent implements OnInit {
 
   private room_id: string;
-  private self_user_id: string;
+  private self_user_id;
   private users = [];
   private log_array: string[] = ['New entries are inserted at the top'];
 
@@ -24,10 +24,8 @@ export class RoomComponent implements OnInit {
       this.room_id = params['room_id'];
       this.self_user_id = Math.random().toString().slice(2,11);
 
-
       const init_display_name = 'User' + Math.random().toString().slice(2,5);
       this.users.push({user_id: this.self_user_id, display_name: init_display_name, result_string: '-', total_val: '-'});
-
 
       this.webSocket.joinRoom(this.room_id);
 
