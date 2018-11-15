@@ -53,10 +53,12 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
+var user_count = 0;
 
 // Place holder socket.io logic
 io.on('connection', (socket) => {
-  console.log('A user has connected to a socket', socket.client.id);
+  socket.client.display_name = 'User' + ++user_count;
+  console.log('A user has connected to a socket:', socket.client.id, '/ user nickname:', socket.client.display_name);
 
   socket.on('msg', (msg) => {
     console.log(socket.client.id, ':', msg);
