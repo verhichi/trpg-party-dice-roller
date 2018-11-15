@@ -84,6 +84,11 @@ io.on('connection', (socket) => {
     };
 
     io.to(roll_result.room_id).emit('roll', roll_info);
-  })
+  });
+
+
+  socket.on('exit', (room_id, user_id) => {
+    io.to(room_id).emit('exit', user_id);
+  });
 
 });

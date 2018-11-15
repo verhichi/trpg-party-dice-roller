@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-log',
@@ -8,10 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LogComponent implements OnInit {
 
   @Input() log_array: string[];
+  @Output() onClearLogButton = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClick(){
+    this.onClearLogButton.emit();
   }
 
 }

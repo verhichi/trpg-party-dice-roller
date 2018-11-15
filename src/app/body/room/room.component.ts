@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WebSocketService } from '../../service/web-socket.service';
 
@@ -44,6 +44,7 @@ export class RoomComponent implements OnInit {
         }
       });
 
+
       this.webSocket.onNewRoll().subscribe((roll) => {
         this.users.find((user) => user.user_id === roll.user_id).result_string = roll.result_string;
         this.users.find((user) => user.user_id === roll.user_id).total_val = roll.total_val;
@@ -52,13 +53,24 @@ export class RoomComponent implements OnInit {
         this.log_array.unshift(`[${master_start_timestamp}][${this.users.find((user) => user.user_id === roll.user_id).display_name}] Result: ${roll.result_string}, Total: ${roll.total_val}`);
       });
 
+
+      this.webSocket.onExit().subscribe((user_id) => {
+        this.users.splice(this.users.findIndex((user) => user.user_id === user_id), 1);
+      });
+
     });
+  }
+
+  onClearLogButton(){
+    this.log_array = [];
   }
 
   sendRollResult(roll_result){
     this.webSocket.sendRollResult(roll_result);
   }
 
-
+  ngOnDestroy(){
+    this.webSocket.exitRoom(this.room_id, this.self_user_id);
+  }
 
 }

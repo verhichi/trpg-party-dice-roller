@@ -46,4 +46,16 @@ export class WebSocketService {
     });
   }
 
+  exitRoom(room_id, user_id){
+    this.socket.emit('exit', room_id, user_id);
+  }
+
+  onExit(){
+    return Observable.create(observer => {
+      this.socket.on('exit', (user_id) => {
+        observer.next(user_id);
+      });
+    });
+  }
+
 }
