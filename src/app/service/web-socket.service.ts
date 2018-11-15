@@ -5,8 +5,8 @@ import * as io from 'socket.io-client';
 @Injectable()
 export class WebSocketService {
 
-  private socket: SocketIOClient.Socket;
-  private url: string = 'http://localhost:3000';
+  socket: SocketIOClient.Socket;
+  url: string = 'http://localhost:3000';
 
   constructor() {
     this.socket = io(this.url);
@@ -20,6 +20,30 @@ export class WebSocketService {
         observer.next(room_info);
       });
     });
+  }
+
+  rollDice(room_id: string, user_id: string, dice_count: string, dice_type: string, bonus_symbol: string, bonus_val: string){
+    let result = [];
+
+    for(let idx = 0; idx < dice_count; idx++){
+      const roll = Math.floor(Math.random() * dice_type) + 1
+      result.push(roll);
+    }
+
+    const result_string = result.join(', ') + '(' + bonus_symbol + bonus_val + ')';
+
+    const total_val = result.reduce(function(prev, next){
+      return prev + next;
+    }, Number(bonus_symbol + bonus_val));
+
+    const roll_result = {
+      room_id: room_id,
+      user_id: user_id,
+      result_string: result_string,
+      total_val: total_val
+    };
+
+    this.socket.emit('roll', roll_result);
   }
 
 }

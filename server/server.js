@@ -64,24 +64,27 @@ io.on('connection', (socket) => {
   socket.on('join', (room_id) => {
     socket.join(room_id);
 
-    let room_info = {};
+    let room_info = {
+      self: socket.client.id,
+      users: {}
+    };
 
     for (socket_id in io.sockets.adapter.rooms[room_id].sockets){
-      room_info[socket_id] = io.sockets.sockets[socket_id].display_name;
+      room_info.users[socket_id] = io.sockets.sockets[socket_id].display_name;
     }
 
     io.to(room_id).emit('room_info', room_info);
   });
 
   // Logic for when a user rolls a dice
-  socket.on('roll', (user_roll_info) => {
+  socket.on('roll', (roll_result) => {
     const roll_info = {
-      user_id: user_roll_info.user_id,
-      result_string: user_roll_info.result_string,
-      total_val: user_roll_info.total_val
+      user_id: roll_result.user_id,
+      result_string: roll_result.result_string,
+      total_val: roll_result.total_val
     };
 
-    io.to(user_roll_info.room_id).emit('roll', roll_info);
+    io.to(roll_result.room_id).emit('roll', roll_info);
   })
 
 });
