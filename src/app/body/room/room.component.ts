@@ -19,7 +19,7 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.room_id = params['room_id'];
-      console.log('this.room_id:', this.room_id);
+      this.webSocket.joinRoom(this.room_id);
     });
   }
 

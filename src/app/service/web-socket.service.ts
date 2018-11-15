@@ -11,6 +11,10 @@ export class WebSocketService {
     this.socket = io('http://localhost:3000');
   }
 
+  joinRoom(room_id: string){
+    this.socket.emit('join', room_id);
+  }
+
   sendMessage(msg: string){
     this.socket.emit('msg', {msg: msg});
   }
