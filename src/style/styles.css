@@ -115,6 +115,12 @@ main{
   width: calc(100% + 17px);
 }
 
+@media screen and (max-width: 768px) {
+  .other-container{
+    width: 100%;
+  }
+}
+
 .username{
   font-size: 18px;
   font-weight: bold;
@@ -261,6 +267,12 @@ main{
   overflow-y: scroll;
   padding: 5px;
   width: calc(100% + 20px);
+}
+
+@media screen and (max-width: 768px) {
+  .log-content-container{
+    width: 100%;
+  }
 }
 
 .log-content{
