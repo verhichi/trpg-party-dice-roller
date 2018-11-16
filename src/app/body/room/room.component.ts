@@ -63,6 +63,16 @@ export class RoomComponent implements OnInit {
     this.log_array = [];
   }
 
+  editDisplayName(){
+    const new_display_name = prompt('Please enter your new display name', '');
+
+    if(new_display_name){
+      console.log('New name:', new_display_name);
+    } else {
+      console.log('User cancelled prompt');
+    }
+  }
+
   sendRollResult(roll_result){
     this.webSocket.sendRollResult(roll_result);
   }

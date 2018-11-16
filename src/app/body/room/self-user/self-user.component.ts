@@ -11,6 +11,7 @@ export class SelfUserComponent implements OnInit {
   @Input() self_user_id: string;
   @Input() users;
   @Output() onRollClick = new EventEmitter();
+  @Output() editDisplayName = new EventEmitter();
 
   private self_user;
 
@@ -20,7 +21,7 @@ export class SelfUserComponent implements OnInit {
     this.self_user = this.users.find((user) => user.user_id === this.self_user_id);
   }
 
-  onClick(dice_count: number, dice_type: number, bonus_symbol: string, bonus_val: number){
+  onClickRoll(dice_count: number, dice_type: number, bonus_symbol: string, bonus_val: number){
     let result = [];
 
     for(let idx = 0; idx < dice_count; idx++){
@@ -42,6 +43,10 @@ export class SelfUserComponent implements OnInit {
     };
 
     this.onRollClick.emit(roll_result);
+  }
+
+  onClickEdit(){
+    this.editDisplayName.emit();
   }
 
 }
