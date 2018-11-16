@@ -122,6 +122,11 @@ main{
   padding: 3px;
 }
 
+.self-container .username{
+  display: flex;
+  justify-content: space-between;
+}
+
 .self-container .user-container{
   border-color: #77D83D;
 }
