@@ -52,6 +52,11 @@ export class RoomComponent implements OnInit {
       });
 
 
+      this.webSocket.onEditDisplayName().subscribe((user_info) => {
+        this.users.find((user) => user.user_id === user_info.user_id).display_name = user_info.display_name;
+      });
+
+
       this.webSocket.onExit().subscribe((user_id) => {
         this.users.splice(this.users.findIndex((user) => user.user_id === user_id), 1);
       });
@@ -67,9 +72,7 @@ export class RoomComponent implements OnInit {
     const new_display_name = prompt('Please enter your new display name', '');
 
     if(new_display_name){
-      console.log('New name:', new_display_name);
-    } else {
-      console.log('User cancelled prompt');
+      this.webSocket.editDisplayName(this.room_id, this.self_user_id, new_display_name);
     }
   }
 

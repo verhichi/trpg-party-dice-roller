@@ -89,6 +89,10 @@ io.on('connection', (socket) => {
     io.to(roll_result.room_id).emit('roll', roll_info);
   });
 
+  socket.on('edit_name', (room_id, user_id, display_name) => {
+    io.to(room_id).emit('edit_name', {user_id, display_name});
+  });
+
 
   socket.on('exit', (room_id, user_id) => {
     io.to(room_id).emit('exit', user_id);

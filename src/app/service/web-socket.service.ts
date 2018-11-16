@@ -46,6 +46,18 @@ export class WebSocketService {
     });
   }
 
+  editDisplayName(room_id: string, user_id: string, display_name: string){
+    this.socket.emit('edit_name', room_id, user_id, display_name);
+  }
+
+  onEditDisplayName(){
+    return Observable.create(observer => {
+      this.socket.on('edit_name', (user_info) => {
+        observer.next(user_info);
+      });
+    });
+  }
+
   exitRoom(room_id, user_id){
     this.socket.emit('exit', room_id, user_id);
   }
