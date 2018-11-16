@@ -6,7 +6,7 @@ import * as io from 'socket.io-client';
 export class WebSocketService {
 
   socket: SocketIOClient.Socket;
-  url: string = 'https://trpg-party-dice-roller.c9users.io/';
+  url: string = 'http://trpg-party-dice-roller.verhichi.c9users.io/';
   // url: string = 'http://192.168.1.200:3000';
 
   constructor() {
