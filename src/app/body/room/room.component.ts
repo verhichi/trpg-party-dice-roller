@@ -47,8 +47,12 @@ export class RoomComponent implements OnInit {
         this.users.find((user) => user.user_id === roll.user_id).result_string = roll.result_string;
         this.users.find((user) => user.user_id === roll.user_id).total_val = roll.total_val;
 
-        const master_start_timestamp = new Date().toLocaleString();
+        const master_start_timestamp = new Date().toLocaleTimeString();
         this.log_array.unshift(`[${master_start_timestamp}][${this.users.find((user) => user.user_id === roll.user_id).display_name}] Result: ${roll.result_string}, Total: ${roll.total_val}`);
+
+        if(this.log_array.length >= 100){
+          this.log_array.pop();
+        }
       });
 
 
