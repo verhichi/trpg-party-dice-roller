@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WebSocketService } from '../../service/web-socket.service';
 
@@ -81,6 +81,10 @@ export class RoomComponent implements OnInit {
   }
 
   ngOnDestroy(){
+    this.webSocket.exitRoom(this.room_id, this.self_user_id);
+  }
+
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
     this.webSocket.exitRoom(this.room_id, this.self_user_id);
   }
 
