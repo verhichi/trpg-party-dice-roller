@@ -14,6 +14,7 @@ export class SelfUserComponent implements OnInit {
   @Output() editDisplayName = new EventEmitter();
 
   private self_user;
+  private disable_button = false;
 
   constructor() { }
 
@@ -47,6 +48,14 @@ export class SelfUserComponent implements OnInit {
 
   onClickEdit(){
     this.editDisplayName.emit();
+  }
+
+  disableRollButton(dice_count, dice_type, bonus_val){
+    const dice_count_error = !(dice_count > 0);
+    const dice_type_error = !(dice_type > 0);
+    const bonus_val_error = bonus_val.length === 0 || isNaN(bonus_val);
+
+    this.disable_button = (dice_count_error || dice_type_error || bonus_val_error) ? true : false;
   }
 
 }

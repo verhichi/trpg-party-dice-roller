@@ -197,6 +197,11 @@ main{
   width: 100%;
 }
 
+.roll-button:disabled{
+  background: #999;
+  cursor: default;
+}
+
 .dice-roll-result-container{
   color: #fff;
   flex-grow: 1;

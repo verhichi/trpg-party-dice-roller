@@ -8,7 +8,7 @@
 
       <div class="dice-roll-form-container">
         <div class="dice-roll-title">Dice Setting</div>
-        <div class="dice-roll-form">
+        <div class="dice-roll-form" (change)="disableRollButton(dice_count.value, dice_type.value, bonus_val.value)">
           <div class="dice-type">
             Dice:
             <input #dice_count class="input-number" type="tel" name="dice-number" value="2">
@@ -23,7 +23,7 @@
             </select>
             <input #bonus_val class="input-number" type="tel" name="modifier" value="0">
           </div>
-          <button class="roll-button" (click)="onClickRoll(dice_count.value, dice_type.value, bonus_symbol.value, bonus_val.value)">ROLL</button>
+          <button class="roll-button" (click)="onClickRoll(dice_count.value, dice_type.value, bonus_symbol.value, bonus_val.value)" [disabled]="disable_button">ROLL</button>
         </div>
       </div>
 
