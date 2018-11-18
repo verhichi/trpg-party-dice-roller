@@ -9,10 +9,10 @@ import { WebSocketService } from '../../service/web-socket.service';
 })
 export class RoomComponent implements OnInit {
 
-  private room_id: string;
-  private self_user_id;
-  private users = [];
-  private log_array: string[] = ['New entries are inserted at the top'];
+  room_id: string;
+  self_user_id;
+  users = [];
+  log_array: string[] = ['New entries are inserted at the top'];
 
   constructor(
     private webSocket: WebSocketService,

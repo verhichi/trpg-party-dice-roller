@@ -13,8 +13,8 @@ export class SelfUserComponent implements OnInit {
   @Output() onRollClick = new EventEmitter();
   @Output() editDisplayName = new EventEmitter();
 
-  private self_user;
-  private disable_button = false;
+  self_user;
+  disable_button = false;
 
   constructor() { }
 
