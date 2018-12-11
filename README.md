@@ -9,7 +9,7 @@
 - I often play TRPG with friends on Skype.
 - We each have our own dice tools, meaning, if we wanted to, we can lie about our dice rolls(Not that my friends do that, but it's always a possibility).
 - I thought it'd be cool if we can share dice result's online, in real-time.
-- There are many sites that provide such services(and even go as far as show character stats, maps, etc).
+- One google search revealed that there are many sites that provide such services(and even go as far as show character stats, maps, etc). **But I found that most of them are cluttered with functions making it hard to see/understand and also require account registeration.**
 - I wanted to create a web application that just has the bare-bone function of sharing dice rolls that's easy to understand and easy to use.
 - I wanted to learn about WebSockets.
 - I wanted to try out making an angular application.
